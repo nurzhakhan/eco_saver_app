@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 );
               },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(152, 191, 94, 1)
+                    backgroundColor: Color.fromRGBO(152, 191, 94, 1),
                 ),
                 child: Container(
                   height: 56,

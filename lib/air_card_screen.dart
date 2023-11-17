@@ -10,21 +10,44 @@ class AirCardScreen extends StatefulWidget {
 }
 
 class _AirCardScreenState extends State<AirCardScreen> {
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
+    return SingleChildScrollView(
+      controller: _controller,
+      child: Stack(
         children: [
-          Text('fff'),
-          WebView(
-            initialUrl: 'https://www.iqair.com/ru/air-quality-map',
-            javascriptMode: JavascriptMode.unrestricted,
-            debuggingEnabled: true,
-            onWebResourceError: (WebResourceError error) {
-              print("WebView Error: ${error.errorCode}, ${error.description}");
-            },
-          )
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: WebView(
+              initialUrl: "https://www.iqair.com/ru/air-quality-map",
+              javascriptMode: JavascriptMode.unrestricted,
+              onPageStarted: (url) {
+                _controller.jumpTo(
+                  _controller.position.maxScrollExtent,
+                );
+                setState(() {
 
+                });
+                print('New $url');
+              },
+              onWebResourceError: (WebResourceError error) {
+                print("WebView Error: ${error.failingUrl}, ${error.description}");
+              },
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+              left: 0,
+              right: 0,
+              child: Image.asset('assets/air_info_message.png', width: double.infinity,)),
         ],
       ),
     );
