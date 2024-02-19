@@ -100,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appWidgetOptions.elementAt(_selectedIndex),
+      backgroundColor: Colors.grey[80],
       body: Container(
         child: _bodyWidgetOptions.elementAt(_selectedIndex),
     ),
